@@ -126,6 +126,7 @@ void management_system_menu(Store* store)
             default :
                     choice = 0;
                     printf("\n\nMerci, la gestion des produits a été effectué avec succès.\n\n");
+                    sleep(2);
                     break;
         }
     }
