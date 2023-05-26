@@ -152,6 +152,7 @@ void purchase_system_purchase(Store* store, Customer* customer)
 
                 choice = 0;
                 printf("\n\nMerci pour vos achats, à bientôt.\n\n");
+                sleep(2);
                 break;
 
         }
