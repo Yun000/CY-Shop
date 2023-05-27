@@ -62,7 +62,7 @@ int common_directory_get_file_count(char* directoryPath)
     int count = 0;
 
     DIR* directory = common_directory_safe_open(directoryPath);
-
+    // Obtenir le nombre de fichier dans le dossier
     struct dirent* entry;
     while ((entry = readdir(directory)) != NULL) 
     {
