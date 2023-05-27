@@ -74,38 +74,53 @@ void store_product_show_all(Store* store)
 
 void store_product_show_out_stock(Store* store)
 {
+    // Liste temporaire
     Product* productLowestStocks[5] = {NULL, NULL, NULL, NULL, NULL};
 
+    // On regarde chaque produit qui se trouve le fichier
     for (int i = 0; i < store->productsCount; i++)
     {
+        // Passer si le produit à une stock égale à 0
         if (store->products[i]->quantity == 0){
             product_display(store->products[i]);
         }
         else{
-            int max = -1;
-            int maxIndex = -1;
+            int max = -1; // Produit avec le plus grand stock dans la liste temporaire
+            int maxIndex = -1; // Utilisé pour trouver la place du produit dans la liste qui à la plus grande quantité
+
+            // Voir dans la liste temporaire qui à un stock plus grand
             for (int j = 0; j < 5; j++)
             {
+                // Mettre le produit dans la liste temporaire s'il contient NULL
                 if (productLowestStocks[j] == NULL){
                     productLowestStocks[j] = store->products[i];
                     break;
                 }
                 
+                // Si on trouve un stock plus grand que celui stocké dans maxIndex, on replace la valeur
                 if (max < productLowestStocks[j]->quantity){
-                    max = productLowestStocks[j]->quantity;
-                    maxIndex = j;
+                    max = productLowestStocks[j]->quantity; // On récupère le stock du produit
+                    maxIndex = j; // On récupère l'index du produit avec le plus gros stock
                 }
+            }
 
-                if (productLowestStocks[maxIndex]->quantity > store->products[i]->quantity){                    
-                    productLowestStocks[maxIndex] = store->products[i];
-                }
+            if(maxIndex == -1){
+                continue;
+            }
+            
+            // On compare le stock du produit avec celle de la liste temporaire
+            if (productLowestStocks[maxIndex]->quantity > store->products[i]->quantity){                    
+                productLowestStocks[maxIndex] = store->products[i];
             }
         }
     }
+
+    // Afficher les produits avec le plus bas stock
     for (int i = 0; i < 5; i++){
         product_display(productLowestStocks[i]);
     }
 }
+       
 
 int store_product_get_stock(Store* store, Product* product)
 {
