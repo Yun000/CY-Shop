@@ -19,6 +19,7 @@
 #define CLEAR_SCREEN    "\e[1;1H\e[2J"
 #define RED             "\x1B[31m"
 #define YELLOW          "\x1B[33m"
+// Remettre à la couleur de défault
 #define RESET           "\x1B[0m"
 
 // Alloue en mémoire en sécurité une structure 
