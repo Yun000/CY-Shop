@@ -10,6 +10,7 @@
 Customer* purchase_system_login(Store* store);
 
 // Affichage pour les optiosn d'achat
+// customer : Client qui s'est connecté
 void purchase_system_purchase(Store* store, Customer* customer);
 
 #endif
