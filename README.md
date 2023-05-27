@@ -5,8 +5,10 @@
 Cy-Shop est un concessionnaire en ligne qui permet de se connecter à un compte et de pouvoir acheter un ou plusieurs articles.<br/>
 On peut créer un compte ou se connecter.<br/>
 Une fois fois connecter,on peut voir la liste des articles que le magasin propose à la vente ainsi que l'historique de nos 3 derniers achats.<br/>
+
 Dans le mode achat, on peut acheter autant d'articles souhaité dans la limite des stocks ou si désinscrire si souhaité.<br/>
-Dans le mode gestion,on peut voir l'espace disponible dans le magasin, voir les produits dont le stock est le plus bas, verifier le stock, faire un réapprovisionnement et retirer des stocks en particulier d'un produit à l'aide de son nom ou de son numéro de réfernece.
+
+Dans le mode gestion, on peut voir l'espace disponible dans le magasin, voir les produits dont le stock est le plus bas, verifier le stock, faire un réapprovisionnement et retirer des stocks en particulier d'un produit à l'aide de son nom ou de son numéro de réfernece.
 
 ## Compatibilité systeme
 
