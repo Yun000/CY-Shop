@@ -39,6 +39,7 @@ Customer* store_customer_search(Store* store, char* name, char* firstName)
 {
     for (int i = 0; i < store->customersCount; i++){
         Customer* customer = store->customers[i];
+        // On retourne le client si son nom ET prénom ont été trouvé
         if (!strcasecmp(customer->name, name) && !strcasecmp(customer->firstName, firstName)){
             return customer;
         }
@@ -62,6 +63,7 @@ Product* store_product_search(Store* store, char* name)
     for (int i = 0; i < store->productsCount; i++)
     {
         Product* product = store->products[i];
+        // On retourne le produit si son nom OU numéro de référence à été trouvé
         if ((product->referenceNumber == atoi(name)) || !strcasecmp(product->name, name)){
             return product;
         }
@@ -133,12 +135,14 @@ int store_product_get_stock(Store* store, Product* product)
 
 void store_product_increase_stock(Store* store, Product* product, int add)
 {
+    // On vérifie si la quantité ajouté ne dépasse pas la quantité restante du magasin
     if (product->size * add + store->currentCapacity > STORE_CAPACITY_SIZE){
         printf("Impossible d'augmenter le stock car celui-ci dépasse la capacité maximale du magasin !\n");
         sleep(2);
         return;
     }
     product->quantity += add;
+    // On met à jour la quantité restante du magasin
     store->currentCapacity += product->size * add;
 }
 
@@ -156,7 +160,7 @@ void store_product_decrease_stock(Store* store, Product* product, int dele)
 void store_save_products(Store* store, char* filePath)
 {	
     FILE * productFile = common_file_safe_open(filePath, "w");
-
+    // Ecrire tous les produits dans le fichier
     for (int i = 0; i < store->productsCount; i++){
         fprintf(productFile, "%s;%03d;%d;%.2f;%s;\n", store->products[i]->name, store->products[i]->referenceNumber, store->products[i]->quantity, store->products[i]->price, product_get_string_from_size(store->products[i]->size));
     }
