@@ -5,14 +5,17 @@ Store* store_new(char* customersDirectoryPath, char* productsFilePath)
 {
     Store* store = common_safe_malloc(sizeof(Store));
 
+    // Charger les clients
     store->customersCount = common_directory_get_file_count(customersDirectoryPath);
 
     store->customers = customer_load_all_from_directory(customersDirectoryPath, store->customersCount);
     
+    // Charger les produits
     store->productsCount = common_file_get_line_count(productsFilePath, "r");
 
     store->products = product_load_from_file(productsFilePath, store->productsCount);
-
+    
+    // Avoir la quantité actuelle du magasin
     for (int i = 0; i < store->productsCount; i++)
     {
         store_update_remaining_capacity(store, store->products[i]);
@@ -23,6 +26,7 @@ Store* store_new(char* customersDirectoryPath, char* productsFilePath)
 
 void store_update_remaining_capacity(Store* store, Product* product)
 {
+    // Mettre à jour la quantité actuelle du magasin
     store->currentCapacity += product->quantity * product->size;
 }
 
